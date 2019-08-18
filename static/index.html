@@ -1,0 +1,112 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Serverless Notifications Panel</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+	
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script type="text/javascript" src="index.js" defer></script>
+</head>
+<style>
+    body {
+        background-color: floralwhite;
+        font-family: 'Roboto', Helvetica, sans-serif;
+        text-align: center;
+        padding: 30px;
+    }
+
+    h1 {
+        margin-top: 0;
+    }
+
+    form {
+        text-align: left;
+        max-width: 600px;
+        width: 100%;
+        margin: 0 auto;
+        display: block;
+    }
+
+    input, textarea,select {
+        width: 100%;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+
+    input[type=submit] {
+        background: #2f96b4;
+        border: 0;
+        color: #fff;
+        margin-bottom: 0;
+        padding: 10px 5px;
+    }
+</style>
+
+<h1>Serverless Notifications Panel</h1>
+
+<p style="color:red">To get notifications via Sms and Email, please fill your phone number and Email!</p>
+<br>
+<div style="font-weight: bold;color:red" id="form-response"></div>
+<br>
+<form>
+	<label for="mobile">Receiver's Phone Number</label>
+	<br>
+    <input type="text" id="mobile" placeholder="eg. +356 99316313">
+	
+	<label for="email">Receiver's Email</label>
+	<br>
+    <input type="email" id="email">
+
+	<label for="senderId">SenderID</label>
+	<br>
+    <input type="text" id="senderId">
+	
+    <label for="subject">Subject</label>
+    <br>
+    <input type="text" id="subject" placeholder="Enter a subject">
+
+    <label for="message">Description</label>
+    <br>
+	<textarea id="message" placeholder="Enter a description"></textarea>
+
+	<label for="sendDateTime">Sending Date Time</label>
+    <br>
+	<input id="sendDateTime" />
+	
+    <label for="theme">Notification Type</label>
+    <br>
+    <select id="theme">
+        <option value="Information">Information</option>
+        <option value="Urgent">Urgent</option>
+    </select>
+    <br>	
+		 
+	<button  id="sendToAll" style="background-color:burlywood;">Send Notification to all subscribers</button>	
+</form>
+<br>
+<br>
+
+<script>
+
+// set send date time to current date and time onload
+jQuery(document).ready(function () {
+	var today = new Date();
+	var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+	var dateTime = date+' '+time;
+
+	$('#sendDateTime').val(dateTime);
+	$('#sendDateTime').prop('disabled', true);
+	$('#senderId').val('sigrahadra');
+	$('#senderId').prop('disabled', true);
+});
+
+</script>
+</html>
