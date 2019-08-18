@@ -2,5 +2,12 @@ Notification panel is reachable via this link https://7gs4n54tbc.execute-api.us-
 
 Sms and Email is sending via Aws Lambda SNS and SES function. In static/index.js file ajax call (POST request) is made to https://inwrk9kgp6.execute-api.us-east-1.amazonaws.com/StageOne. 
 
+Requirements
+AWS Account
+Node.js
+
+Setup
+Install and authenticate aws-cli
+Install and configure Serverless (https://serverless.com)
 
 
