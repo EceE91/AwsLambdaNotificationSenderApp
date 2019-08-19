@@ -28,6 +28,10 @@ Notification panel is reachable via this link https://7gs4n54tbc.execute-api.us-
 
 Sms and Email is being sent via Aws Lambda SNS and SES function. In static/index.js file ajax call (POST request) is made to https://inwrk9kgp6.execute-api.us-east-1.amazonaws.com/StageOne. 
 
+SNS publish is picked up by a listener Lambda, which in turn re-publishes the message to a separate topic a set number of times, depending on how many subscribers there are. The broadcast Lambda attached to that topic is then run multiple times in parallel, encrypting the payload and sending to each individual Web Push client, using the web-push library.
+
+TODO:SQS Dynamodb
+
 <h3>Requirements</h3>
 <ul>
   <li>AWS Account</li>
