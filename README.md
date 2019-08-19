@@ -5,6 +5,7 @@ Enable users to get notifications via SMS, E-mail and browsers.  A simple notifi
 </p>
 
 ----------------------------------------------------------------------------------------------------------------------------------------
+Serverless architecture is also called FaaS (function as a service).
 
 Lambda service is provided by Amazon that lets us execute and scale code efficiently. It is called a “serverless” service, but our code still runs on a server provisioned by Amazon, but we don’t manage it, maintain it or scale it. Amazon does all of this stuff automatically, so no matter how many people are using our site or service, it will NOT get overwhelmed.
 
@@ -58,8 +59,8 @@ module.exports.functionOne = function(event, context, callback) {};<br>
 
 // serverless.yml<br>
 <p>functions:</p>
-<p text-indent:30px;>functionOne:</p>
-<p text-indent:50px;>handler: handler.functionOne</p><br>
+   <p style="margin-left:50px;">functionOne:</p>
+   <p style="text-indent:100px;">handler: handler.functionOne</p><br>
 
 
 A Function is an AWS Lambda function. It's an independent unit of deployment, like a microservice. It's merely code, deployed in the cloud, that is most often written to perform a single job: In my case sending notifications to users (I am sending sms email and web notifications from the same module, actually this is not recommended. So as to do or maintenance work I will split these three into 3 different modules)
@@ -73,5 +74,11 @@ Anything that triggers an AWS Lambda Function to execute is regarded by the Fram
 <li>An AWS SNS topic (e.g., an sms message or simple notification)</li>
 <li>A CloudWatch Alert (e.g., something happened)</li>
  </ul>
+ 
+ VAPID
+ SERVICE WORKERS
 
+<h3>Some of the problems I have faced</h3>
+
+In order to make AWS Lambdas accessible through HTTP we need to use the AWS API Gateway. While Serverless handles all this mapping for us, the API gateway itself is frustrating to use. For instance, it is not possible to specify the HTTP status code of a response from within our Lambda. Instead, we must set up a series of templates in the API Gateway that are based around regexes of the response body.
 
