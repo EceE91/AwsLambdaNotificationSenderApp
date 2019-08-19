@@ -45,7 +45,33 @@ Sms and Email is being sent via Aws Lambda SNS and SES function. In static/index
 <br>AWS Secret Access Key [None]: (can be obtained and downloaded from AWS Console)
 <br>Default region name [None]: us-west-2 (depending on your region)
 <br>Default output format [None]: json</p></li>
-  <li>Install and configure Serverless (https://serverless.com)</li>
+  <li>Install and configure Serverless (https://serverless.com) ("The Serverless Framework consists of an open source CLI that makes it easy to develop, deploy and test serverless apps across different cloud providers, as well as a hosted Dashboard that includes features designed to further simplify serverless development, deployment, and testing, and enable you to easily secure and monitor your serverless apps.")<br>Make changes on your code and deploy just typing sls deploy</li>
 </ul>
+
+The Serverless Framework helps us develop and deploy our AWS Lambda functions (in my case Lambda function is called processContactFormRequest > awsMailAndSmsSenderFunction.js), along with the AWS infrastructure resources they require. It's a CLI that offers structure, automation and best practices out-of-the-box, allowing us to focus on building sophisticated, event-driven (this way we can split our apllication to smaller modules which helps us to build microservice friendly apps), serverless architectures, comprised of Functions and Events. 
+
+A Service is the Framework's unit of organization. You can think of it as a project file, though you can have multiple services for a single application. It's where you define your Functions, the Events that trigger them, and the Resources your Functions use, all in one file entitled serverless.yml.
+When we deploy with the Framework by running "serverless deploy" command in CLI, everything in serverless.yml is deployed at once.
+To create serverless.yml: <br>
+// handler.js <br>
+module.exports.functionOne = function(event, context, callback) {};<br>
+
+// serverless.yml<br>
+<p>functions:</p>
+<p text-indent:30px;>functionOne:</p>
+<p text-indent:50px;>handler: handler.functionOne</p><br>
+
+
+A Function is an AWS Lambda function. It's an independent unit of deployment, like a microservice. It's merely code, deployed in the cloud, that is most often written to perform a single job: In my case sending notifications to users (I am sending sms email and web notifications from the same module, actually this is not recommended. So as to do or maintenance work I will split these three into 3 different modules)
+
+Anything that triggers an AWS Lambda Function to execute is regarded by the Framework as an Event. Events are infrastructure events on AWS such as:
+
+<ul>
+  <li>An AWS API Gateway HTTP endpoint request (e.g., for a REST API)</li>
+<li>An AWS S3 bucket upload (e.g., for website)</li>
+<li>A CloudWatch timer (e.g., run every 5 minutes)</li>
+<li>An AWS SNS topic (e.g., an sms message or simple notification)</li>
+<li>A CloudWatch Alert (e.g., something happened)</li>
+ </ul>
 
 
