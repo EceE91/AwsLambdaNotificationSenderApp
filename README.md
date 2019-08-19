@@ -22,7 +22,7 @@ In the words of Amazon; AWS Lambda is a compute service where you can upload you
 </ul>
 <br>
 
-<p><b>Project Details</b></p>
+<h3><b>Project Details</b></h3>
 Notification panel is reachable via this link https://7gs4n54tbc.execute-api.us-east-1.amazonaws.com/dev/index.html. The link is reachable from everywhere including Android, IOS phones and tabs. The only thing you should do is to allow notifications and to enter required information from the panel! If you want to get notifications via email and sms, please enter your phone number in E.164 format (E.g: +35611113333) and your email address. But your email has to be reqistered to AWS, otherwise you will not get any emails. SMSSENDERID is limited to 11 alphanumeric characters; using more than 11 alphanumeric chars will be resulted in error. 
 
 Sms and Email is being sent via Aws Lambda SNS and SES function. In static/index.js file ajax call (POST request) is made to https://inwrk9kgp6.execute-api.us-east-1.amazonaws.com/StageOne. 
@@ -39,7 +39,12 @@ Sms and Email is being sent via Aws Lambda SNS and SES function. In static/index
 
 <h3>Setup</h3>
 <ul>
-  <li>Install and authenticate aws-cli</li>
+  <li>Install and authenticate aws-cli (Unified tool to manage multiple AWS services. https://aws.amazon.com/cli/)
+<p>$ aws configure
+<br>AWS Access Key ID [None]: (can be obtained and downloaded from AWS Console)
+<br>AWS Secret Access Key [None]: (can be obtained and downloaded from AWS Console)
+<br>Default region name [None]: us-west-2 (depending on your region)
+<br>Default output format [None]: json</p></li>
   <li>Install and configure Serverless (https://serverless.com)</li>
 </ul>
 
