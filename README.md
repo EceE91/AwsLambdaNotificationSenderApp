@@ -1,4 +1,10 @@
-<h2>AWS Lambda (Serverless)</h2>
+<h2>AWS Lambda (Serverless) Notification Application</h2>
+
+<p><b> Description:</b><br>
+Enable users to get notifications via SMS, E-mail and browsers.  A simple notification panel in the front-end language of choice (e.g. JavaScript / HTML) and develop a back-end, based on AWS (lambda) serverless computing, that allows a back-office user to add notifications for particular users or for all users. Each notification comprises the following displayable fields: date-time, subject, type (this could be 'general', 'urgent', or anything else), description. The users should be able to see these notifications in their panel and also to receive them via SMS and/or email.
+</p>
+
+----------------------------------------------------------------------------------------------------------------------------------------
 
 Lambda service is provided by Amazon that lets us execute and scale code efficiently. It is called a “serverless” service, but our code still runs on a server provisioned by Amazon, but we don’t manage it, maintain it or scale it. Amazon does all of this stuff automatically, so no matter how many people are using our site or service, it will NOT get overwhelmed.
 
@@ -14,8 +20,9 @@ In the words of Amazon; AWS Lambda is a compute service where you can upload you
   <li>As an event-driven compute service where AWS Lambda runs your code in response to events, such as changes to data in an Amazon S3 bucket or an Amazon DynamoDB table.</li>
  <li>As a compute service to run your code in response to HTTP requests using Amazon API Gateway or API calls made using AWS SDKs (This is exactly what I do; run code based on a HTTP request).</li>
 </ul>
+<br>
 
-
+<p><b>Project Details</b></p>
 Notification panel is reachable via this link https://7gs4n54tbc.execute-api.us-east-1.amazonaws.com/dev/index.html. The link is reachable from everywhere including Android, IOS phones and tabs. The only thing you should do is to allow notifications and to enter required information from the panel! If you want to get notifications via email and sms, please enter your phone number in E.164 format (E.g: +35611113333) and your email address. But your email has to be reqistered to AWS, otherwise you will not get any emails. SMSSENDERID is limited to 11 alphanumeric characters; using more than 11 alphanumeric chars will be resulted in error. 
 
 Sms and Email is being sent via Aws Lambda SNS and SES function. In static/index.js file ajax call (POST request) is made to https://inwrk9kgp6.execute-api.us-east-1.amazonaws.com/StageOne. 
