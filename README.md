@@ -28,9 +28,12 @@ Notification panel is reachable via this link https://7gs4n54tbc.execute-api.us-
 
 Sms and Email is being sent via Aws Lambda SNS and SES function. In static/index.js file ajax call (POST request) is made to https://inwrk9kgp6.execute-api.us-east-1.amazonaws.com/StageOne. 
 
-SNS publish is picked up by a listener Lambda, which in turn re-publishes the message to a separate topic a set number of times, depending on how many subscribers there are. The broadcast Lambda attached to that topic is then run multiple times in parallel, encrypting the payload and sending to each individual Web Push client, using the web-push library.
+SNS publish is picked up by a listener Lambda, which in turn re-publishes the message to a separate topic a set number of times, depending on how many subscribers there are. The broadcast Lambda attached to that topic is then run multiple times in parallel, encrypting the payload and sending to each individual Web Push client, using the web-push library. 
 
-TODO:SQS Dynamodb
+SNS organizes around topics. A topic groups together messages of the same type which might be of interest to a set of subscribers. In case of a new message being published to a topic, SNS will notify all subscribers. We can configure delivery policies including configuration of maximum receive rates and retry delays.SNS topic subscriptions support multiple protocols: http, https, email, email-json, sms, sqs, application, lambda.
+
+TODO:
+We can also subscribe an SQS queue to the topic, storing the events for asynchronous processing by, e.g., another Lambda function or a long running polling service. In this case we would use the sqs protocol and provide both the topic and the queue endpoint. SNS provides pub/sub functionality to decouple producers and consumers, while SQS gives us the ability to process events asynchronously. This provides persistency. Also we could save the messages to DynamoDB. I am currently working on these.
 
 <h3>Requirements</h3>
 <ul>
@@ -85,4 +88,6 @@ Anything that triggers an AWS Lambda Function to execute is regarded by the Fram
 <h3>Some of the problems I have faced</h3>
 
 In order to make AWS Lambdas accessible through HTTP we need to use the AWS API Gateway. While Serverless handles all this mapping for us, the API gateway itself is frustrating to use. For instance, it is not possible to specify the HTTP status code of a response from within our Lambda. Instead, we must set up a series of templates in the API Gateway that are based around regexes of the response body.
+
+There is no support for Browser notifications by SNS. There are a few solutions like deepstreamhub and pushkin but these are still ongoing projects on Github. Other choices are AWS IOT Websockets and AWS AppSync (new release). It took me a long time find a proper solutuion and in the end I came up with Serverless.com and service workers. If you have a better solution for serverless web notifications, please do not hesitate to share your ideas. 
 
