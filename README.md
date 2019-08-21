@@ -21,7 +21,8 @@ In the words of Amazon; AWS Lambda is a compute service where you can upload you
   <li>As an event-driven compute service where AWS Lambda runs your code in response to events, such as changes to data in an Amazon S3 bucket or an Amazon DynamoDB table.</li>
  <li>As a compute service to run your code in response to HTTP requests using Amazon API Gateway or API calls made using AWS SDKs (This is exactly what I do; run code based on a HTTP request).</li>
 </ul>
----------------------------------------------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------------------------------------------
 <h3><b>Project Details</b></h3>
 Notification panel is reachable via this link https://7gs4n54tbc.execute-api.us-east-1.amazonaws.com/dev/index.html. The link is reachable from everywhere including Android, IOS phones and tabs. The only thing you should do is to allow notifications and to enter required information from the panel! If you want to get notifications via email and sms, please enter your phone number in E.164 format (E.g: +35611113333) and your email address. But your email has to be reqistered to AWS, otherwise you will not get any emails. SMSSENDERID is limited to 11 alphanumeric characters; using more than 11 alphanumeric chars will be resulted in error. 
 
