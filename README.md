@@ -82,9 +82,43 @@ Anything that triggers an AWS Lambda Function to execute is regarded by the Fram
 <li>A CloudWatch Alert (e.g., something happened)</li>
  </ul>
  
- VAPID
- SERVICE WORKERS
+The use of VAPID for push requests is optional, but a security benefit. Application servers use VAPID to identify themselves to the push servers so push subscriptions can be properly restricted to their origin app servers. VAPID can prevent an attacker from stealing a user PushSubscription and sending push messages to that recipient from another server. In the user's web browser, a service worker script is installed and activated. The pushManager property of the ServiceWorkerRegistration is subscribed to push events with our VAPID public key (there is also a private key that we do not share with client), with creates a subscription JSON object on the client side.
 
+E.g:
+const webpush = require('web-push');
+const vapidKeys = webpush.generateVAPIDKeys()
+
+vapidKeys.publicKey
+'BDO0P...eoH'
+
+vapidKeys.privateKey
+'3J303..r4I'
+
+I could use the urlsafe-base64 Node.js package to decode the public key and convert it to raw bytes:
+// server
+const urlsafeBase64 = require('urlsafe-base64');
+const decodedVapidPublicKey = urlsafeBase64.decode(process.env.VAPID_PUBLIC_KEY);
+
+
+So, what are service workers? ( Best explanation https://developers.google.com/web/ilt/pwa/introduction-to-service-worker)
+Service worker  essentially a JavaScript file that runs separately from the main browser thread, intercepting network requests, caching or retrieving resources from the cache, and delivering push messages. Because workers run separately from the main thread, service workers are independent of the application they are associated with. This has several consequences:
+<ul>
+  <li>
+Because the service worker is not blocking (it's designed to be fully asynchronous) synchronous XHR and localStorage cannot be used in a service worker.</li>
+<li>The service worker can receive push messages from a server when the app is not active. This lets your app show push notifications to the user, even when it is not open in the browser.</li></ul>
+
+The service worker can't access the DOM directly. To communicate with the page, the service worker uses the postMessage() method to send data and a "message" event listener to receive data.
+Things to note about Service Worker:
+
+- A service worker is a programmable network proxy that lets you control how network requests from your page are handled.
+Service workers only run over HTTPS. Because service workers can intercept network requests and modify responses, "man-in-the-middle" attacks could be very bad.
+
+- The service worker becomes idle when not in use and restarts when it's next needed. You cannot rely on a global state persisting between events. If there is information that you need to persist and reuse across restarts, you can use IndexedDB databases.
+
+- Service workers enable applications to control network requests, cache those requests to improve performance, and provide offline access to cached content.
+
+- Service workers depend on two APIs to make an app work offline: Fetch (a standard way to retrieve content from the network) and Cache (a persistent content storage for application data). This cache is persistent and independent from the browser cache or network status.
+ 
 <h3>Some of the problems I have faced</h3>
 
 In order to make AWS Lambdas accessible through HTTP we need to use the AWS API Gateway. While Serverless handles all this mapping for us, the API gateway itself is frustrating to use. For instance, it is not possible to specify the HTTP status code of a response from within our Lambda. Instead, we must set up a series of templates in the API Gateway that are based around regexes of the response body.
