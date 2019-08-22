@@ -125,3 +125,5 @@ In order to make AWS Lambdas accessible through HTTP we need to use the AWS API 
 
 There is no support for Browser notifications by SNS. There are a few solutions like deepstreamhub and pushkin but these are still ongoing projects on Github. Other choices are AWS IOT Websockets and AWS AppSync (new release). It took me a long time find a proper solutuion and in the end I came up with Serverless.com and service workers. If you have a better solution for serverless web notifications, please do not hesitate to share your ideas. 
 
+Everytime you make a change in your local repo, we need to run "serverless deploy" to make our changes visible. The same is valid for lambda function development. Whenever we make a change in our Lambda function, it needs to be saved and then deployed in order to reflect changes to the browser.
+
