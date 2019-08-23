@@ -127,3 +127,5 @@ There is no support for Browser notifications by SNS. There are a few solutions 
 
 Everytime you make a change in your local repo, we need to run "serverless deploy" to make our changes visible. The same is valid for lambda function development. Whenever we make a change in our Lambda function, it needs to be saved and then deployed in order to reflect changes to the browser.
 
+If you are trying to test it when you are connected to a private network, then the app is not allowed to subscribe for notification so "request for notification" permisson will not be appear in your browser. 
+
