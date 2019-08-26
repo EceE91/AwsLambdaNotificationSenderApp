@@ -129,3 +129,6 @@ Everytime you make a change in your local repo, we need to run "serverless deplo
 
 If you are trying to test it when you are connected to a private network, then the app is not allowed to subscribe for notification so "request for notification" permisson will not be appear in your browser. 
 
+When the user sends notification from Web browser, the notification is being sent to all subscribers. However, if the user sends notification from mobile browser it does NOT trigger the subscribed web browsers! This is why I also let users to send notifications as email and SMS.
+
+
