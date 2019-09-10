@@ -11,8 +11,6 @@ Lambda service is provided by Amazon that lets us execute and scale code efficie
 
 It has an ability to use the Node runtime to execute JavaScript code. Amazon SNS, push notification service that is capable of sending iOS and Android push notifications. You can subscribe a Lambda to an SNS topic, executing whenever a message is sent.
 
-It has an ability to use the Node runtime to execute JavaScript code. Amazon SNS, push notification service that is capable of sending iOS and Android push notifications. We can subscribe a Lambda to an SNS topic, executing whenever a message is sent.
- 
 Serverless APIs, where you have an API, and when it’s triggered, it starts a program that does a "server" thing when we don’t own a real phsical server.
 
 In the words of Amazon; AWS Lambda is a compute service where you can upload your code to AWS Lambda and the service can run the code on your behalf using AWS infrastructure. After you upload your code and create what we call a Lambda function, AWS Lambda takes care of provisioning and managing the servers that you use to run the code. You can use AWS Lambda as follows:
