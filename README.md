@@ -1,3 +1,5 @@
+<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+
 <h2>AWS Lambda (Serverless) Notification Application</h2>
 
 <p><b> Description:</b><br>
